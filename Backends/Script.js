@@ -92,7 +92,6 @@ app.post("/generate-recipe", async (req, res) => {
 
     // Log the entire response received
     console.log("Model Response:", JSON.stringify(data, null, 2));
-
     const generatedText = data[0]?.generated_text || "No recipe generated.";
 
     // Extract cooking time and servings dynamically if available in the response
