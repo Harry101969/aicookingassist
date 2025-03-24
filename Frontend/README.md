@@ -1,70 +1,130 @@
 # AI Cooking Assistant
 
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/Harry101969/aicookingassist)
+An AI-powered Cooking Assistant that helps generate recipes based on provided ingredients. Built with **React** for the frontend and **Node.js (Express)** for the backend, it utilizes the **flax-community/t5-recipe-generation** model from Hugging Face to generate recipes dynamically.
 
-An interactive AI-powered cooking assistant built using **React + TypeScript**, designed to help users find recipes, get cooking instructions, and explore new dishes effortlessly.
+## 🌟 Features
 
-## 🚀 Features
+- Generate recipes based on user-input ingredients
+- Provides step-by-step cooking instructions
+- AI-powered ingredient suggestions
+- Built using **React (Frontend)** and **Node.js (Backend)**
+- Utilizes **Hugging Face's T5 Recipe Generation Model**
 
-- AI-driven recipe recommendations 🍽️
-- Step-by-step cooking guidance 🧑‍🍳
-- Voice and text-based interaction 🎙️💬
-- Ingredient-based recipe search 🥕🍅
-- Save and share favorite recipes ❤️
+## 🚀 Tech Stack
 
-## 🛠️ Tech Stack
+- **Frontend:** React.js, TypeScript
+- **Backend:** Node.js, Express.js
+- **AI Model:** [flax-community/t5-recipe-generation](https://router.huggingface.co/hf-inference/models/flax-community/t5-recipe-generation)
+- **Hosting:** Local development setup
 
-- **Frontend:** React + TypeScript
-- **Backend:** Node.js + Express (if applicable)
-- **AI Model:** Hugging Face Transformers
-- **Styling:** Tailwind CSS
-- **State Management:** Redux (if used)
+## 📂 Project Structure
 
-## 📦 Installation & Setup
+```
+📦 AI Cooking Assistant
+├── 📁 Backends
+│   ├── Script.js  (Backend API using Node.js & Express)
+│   ├── .env       (Environment Variables for API Keys)
+│   ├── package.json
+│   ├── server.js  (Entry point for backend server)
+├── 📁 Frontend
+│   ├── src
+│   │   ├── App.tsx (Main React Component)
+│   │   ├── components
+│   ├── package.json
+│   ├── .env        (Environment Variables for Frontend)
+├── README.md
+```
 
-Follow these steps to set up the project locally:
+## 🔧 Installation & Setup
 
 ### 1️⃣ Clone the Repository
 
-```bash
+```sh
 git clone https://github.com/Harry101969/aicookingassist.git
-cd AI-cooking-assistant
+cd aicookingassist
 ```
 
-### 2️⃣ Install Dependencies
+### 2️⃣ Backend Setup (Node.js + Express)
 
-```bash
-npm install
-```
+1. Navigate to the `Backend` folder:
+   ```sh
+   cd Backends
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Create a **.env** file in the `Backend` folder and add:
+   ```env
+   HUGGINGFACE_API=your_huggingface_api_key_here
+   PORT=8000
+   ```
+4. Start the backend server:
+   ```sh
+   node Script.js
+   ```
+   The backend should now be running at **http://localhost:8000**
 
-### 3️⃣ Start the Development Server
+### 3️⃣ Frontend Setup (React + TypeScript)
 
-```bash
-npm run dev
-```
+1. Navigate to the `Frontend` folder:
+   ```sh
+   cd ../Frontend
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the frontend development server:
+   ```sh
+   npm run dev
+   ```
+   The frontend should now be running at **http://localhost:5173**
 
-### 4️⃣ Open in Browser
+## 🎯 API Endpoints
 
-Visit `http://localhost:3000` to see the app in action.
+### **1. Generate Recipe**
 
-## 🏗️ Build for Production
+**Endpoint:** `POST /generate-recipe`
 
-```bash
-npm run build
-```
+- **Request Body:**
+  ```json
+  {
+    "ingredients": ["tomato", "onion", "cheese"]
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "name": "Recipe with tomato, onion, cheese",
+    "cookingTime": 30,
+    "servings": 4,
+    "ingredients": ["tomato", "onion", "cheese", "Salt and pepper to taste"],
+    "instructions": ["Step 1: ...", "Step 2: ..."]
+  }
+  ```
 
-## 🤝 Contributing
+### **2. Health Check**
 
-1. Fork the repository 🍴
-2. Create a new branch (`git checkout -b feature-branch`) 🌱
-3. Make your changes and commit (`git commit -m 'Add new feature'`) 🔧
-4. Push to your branch (`git push origin feature-branch`) 🚀
-5. Open a Pull Request 📩
+**Endpoint:** `GET /health`
+
+- **Response:**
+  ```json
+  {
+    "status": "healthy"
+  }
+  ```
+
+## 🛠 Troubleshooting
+
+- **CORS Issue?** Ensure the frontend correctly points to the backend (`VITE_BACKEND_URL`).
+- **API Not Working?** Check if the Hugging Face API key is correctly set in `.env`.
+- **Port Conflicts?** Change `PORT` in `.env` files if needed.
 
 ## 📜 License
 
-This project is licensed under the **MIT License**.
+This project is open-source and free to use.
 
 ---
 
-Made with ❤️ by [Harry101969](https://github.com/Harry101969)
+**Author:** [Harry101969](https://github.com/Harry101969) 🚀

@@ -62,8 +62,6 @@ const express = require("express");
 const cors = require("cors");
 const fetch = require("node-fetch").default;
 const app = express();
-const PORT = 8000;
-
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 
@@ -122,6 +120,6 @@ app.get("/health", (req, res) => {
   res.json({ status: "healthy" });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(`${process.env.PORT}`, () => {
+  console.log(`Server running on http://localhost:${process.env.PORT}`);
 });
