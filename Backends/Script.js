@@ -96,10 +96,13 @@ app.post("/generate-recipe", async (req, res) => {
     const generatedText = data[0]?.generated_text || "No recipe generated.";
 
     // Extract cooking time and servings dynamically if available in the response
+    // const cookingTimeMatch = generatedText.match(
+    //   /Cooking Time: (\d+) minutes/i
+    // )|| "1hr";
+    // const servingsMatch = generatedText.match(/Servings: (\d+)/i)||"2 Person";
     const cookingTimeMatch =
       generatedText.match(/Cooking Time: (\d+) minutes/i) || "1hr";
     const servingsMatch = generatedText.match(/Servings: (\d+)/i) || "2 Person";
-
     const recipe = {
       name: `Recipe with ${ingredientsText}`,
       cookingTime: cookingTimeMatch ? parseInt(cookingTimeMatch[1]) : "Unknown",
