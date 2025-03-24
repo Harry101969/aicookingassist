@@ -57,7 +57,7 @@
 // app.listen(PORT, () => {
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
-
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const fetch = require("node-fetch").default;
@@ -71,7 +71,7 @@ const MODEL_API_URL =
   // "https://api-inference.huggingface.co/models/umass/llama-2-7b-syntod-cooking-assistance";
   "https://router.huggingface.co/hf-inference/models/flax-community/t5-recipe-generation";
 const HEADERS = {
-  Authorization: `Bearer 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`, // Replace with your actual API key
+  Authorization: `Bearer ${process.env.HUGGINGFACE_API}`, // Replace with your actual API key
   "Content-Type": "application/json",
 };
 
@@ -96,10 +96,9 @@ app.post("/generate-recipe", async (req, res) => {
     const generatedText = data[0]?.generated_text || "No recipe generated.";
 
     // Extract cooking time and servings dynamically if available in the response
-    const cookingTimeMatch = generatedText.match(
-      /Cooking Time: (\d+) minutes/i
-    );
-    const servingsMatch = generatedText.match(/Servings: (\d+)/i);
+    const cookingTimeMatch =
+      generatedText.match(/Cooking Time: (\d+) minutes/i) || "1hr";
+    const servingsMatch = generatedText.match(/Servings: (\d+)/i) || "2 Person";
 
     const recipe = {
       name: `Recipe with ${ingredientsText}`,
